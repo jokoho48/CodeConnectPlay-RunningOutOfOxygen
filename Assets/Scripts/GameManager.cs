@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using DG.Tweening;
 using NaughtyAttributes;
 using Plugins;
@@ -28,15 +30,21 @@ public class GameManager : CacheBehaviour
     public float fallDistance = 30;
     public GameObject[] fallingStopObjects;
     public RectTransform oxygenBar;
+    [NonSerialized, ShowNonSerializedField] public bool PlayerAlive = true;
     public void Awake()
     {
         Instance = this;
-        onDeath.AddListener(() => Debug.Log("You Died"));
+        onDeath.AddListener(() =>
+        {
+            PlayerAlive = false;
+            Debug.Log("You Died");
+        });
         // onDeath.AddListener(ReloadLevel);
     }
 
     public void ProcessInput(MoveDirection direction)
     {
+        if (!PlayerAlive) return;
         if (!stepHasFinished)
         {
             _nextMoveDirection = direction;
@@ -56,13 +64,17 @@ public class GameManager : CacheBehaviour
         while (true)
         {
             oxygenAmount -= oxygenLossPerTurn;
-            
             UpdateOxygenDisplay();
-            if (oxygenAmount > 0) continue;
-            player.DoSuffocate();
-            onDeath.Invoke();
+            if (oxygenAmount <= 0)
+            {
+                player.DoSuffocate();
+                onDeath.Invoke();
+                PlayerAlive = false;
+                yield return new WaitForSeconds(2);
+                ReloadLevel();
+                yield break;
+            }
             yield return new WaitForSeconds(1);
-            yield break;
         }
     }
 

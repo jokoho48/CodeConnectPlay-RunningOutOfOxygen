@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerController : StepComponent
@@ -28,9 +29,9 @@ public class PlayerController : StepComponent
         if (Physics.Raycast(rayPosition, newForward, 0.5f, GameManager.Instance.groundLayerMask))
         {
             _animator.SetTrigger(CantMove);
-            _sequence.AppendInterval(2);
+            return;
         }
-        else if (currentForward == newForward)
+        if (currentForward == newForward)
             _sequence.Append(transform.DOMove(transform.position + newForward, GameManager.Instance.stepTime).SetEase(GameManager.Instance.moveEase));
         else
         {

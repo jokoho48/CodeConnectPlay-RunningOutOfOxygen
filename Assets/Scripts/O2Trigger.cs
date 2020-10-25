@@ -5,6 +5,7 @@ public class O2Trigger : CacheBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        if (!GameManager.Instance.PlayerAlive) return;
         if (!other.CompareTag("Player")) return;
         GameManager.Instance.oxygenAmount = 100;
         GameManager.Instance.UpdateOxygenDisplay();
