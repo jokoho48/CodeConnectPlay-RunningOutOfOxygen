@@ -13,9 +13,7 @@ public enum MoveDirection
     Right
 }
 public abstract class StepComponent : CacheBehaviour, IStepComponent
-{
-    protected virtual void Awake() { }
-    protected virtual void Update() { }
+{ 
     protected virtual void Start()
     {
         Register();
@@ -24,7 +22,6 @@ public abstract class StepComponent : CacheBehaviour, IStepComponent
     {
         GameManager.Instance.Register(this);
     }
-
     public virtual void Step(MoveDirection direction) { }
 }
 public interface IStepComponent
@@ -52,7 +49,6 @@ public static class UnityExtension
                 return Vector3.zero;
         }
     }
-
     public static int ToAnimationNumber(this MoveDirection direction)
     {
         switch (direction)

@@ -39,7 +39,6 @@ public class GameManager : CacheBehaviour
             PlayerAlive = false;
             Debug.Log("You Died");
         });
-        // onDeath.AddListener(ReloadLevel);
     }
 
     public void ProcessInput(MoveDirection direction)
@@ -103,11 +102,9 @@ public class GameManager : CacheBehaviour
         }
         
         stepHasFinished = true;
-        if (_nextMoveDirection != MoveDirection.None)
-        {
-            DoStep(_nextMoveDirection);
-            _nextMoveDirection = MoveDirection.None;
-        }
+        if (_nextMoveDirection == MoveDirection.None) return;
+        DoStep(_nextMoveDirection);
+        _nextMoveDirection = MoveDirection.None;
     }
     public void Register(StepComponent stepComponent)
     {
@@ -121,11 +118,9 @@ public class GameManager : CacheBehaviour
 
     public void OnDrawGizmos()
     {
-        if (player)
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(player.transform.position, 0.25f);
-            Gizmos.color = Color.white;            
-        }
+        if (!player) return;
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(player.transform.position, 0.25f);
+        Gizmos.color = Color.white;
     }
 }

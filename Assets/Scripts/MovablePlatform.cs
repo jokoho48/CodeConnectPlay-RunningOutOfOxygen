@@ -14,7 +14,6 @@ public class MovablePlatform : MonoBehaviour
     {
         transform.DOMove(transform.position + moveOffset, duration).SetEase(ease);
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

@@ -9,7 +9,6 @@ public class PlayerController : StepComponent
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int Dir = Animator.StringToHash("Dir");
     private static readonly int CantMove = Animator.StringToHash("cantMove");
-
     protected override void Start()
     {
         base.Start();
@@ -43,7 +42,6 @@ public class PlayerController : StepComponent
         _sequence.Play();
         _sequence.OnComplete(() => GameManager.Instance.StepFinished());
     }
-
     public void StartFalling()
     {
         transform.DOMoveY(transform.position.y - GameManager.Instance.fallDistance, 3.2f).SetEase(GameManager.Instance.fallEase).OnComplete(GameManager.ReloadLevel);
@@ -52,7 +50,6 @@ public class PlayerController : StepComponent
             o.SetActive(false);
         }
     }
-
     public void DoSuffocate()
     {
         _animator.SetInteger(Dir, -1);

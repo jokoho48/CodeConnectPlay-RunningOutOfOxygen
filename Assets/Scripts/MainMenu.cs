@@ -9,7 +9,6 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Level_00");
     }
-
     public void OnExit()
     {
         // save any game data here

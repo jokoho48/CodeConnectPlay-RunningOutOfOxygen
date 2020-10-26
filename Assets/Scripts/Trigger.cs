@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using Plugins;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.TextCore.LowLevel;
 
 public class Trigger : CacheBehaviour
 {
@@ -12,11 +13,7 @@ public class Trigger : CacheBehaviour
     [SerializeField] private float yOffset;
     public UnityEvent onTriggered;
     [ReadOnly] private bool _hasTriggered;
-
-    public void Start()
-    {
-        // startColor = triggerButton.material.color;
-    }
+    [ColorUsage(false, true)]public Color wireActiveColor;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -26,22 +23,18 @@ public class Trigger : CacheBehaviour
             triggerButton.transform.DOMoveY(triggerButton.transform.position.y - yOffset, 0.25f);
             onTriggered.Invoke();
             _hasTriggered = true;
+            var lr = GetComponent<LineRenderer>();
+            if (lr)
+            {
+                lr.material.DOColor(wireActiveColor, "_EmissionColor",0.25f);
+                foreach (var lrs in GetComponentsInChildren<LineRenderer>())
+                {
+                    lrs.material.DOColor(wireActiveColor, "_EmissionColor",0.25f);
+                }
+            }
         }
     }
-
-    /*
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && _hasTriggered)
-        {
-            triggerButton.material.DOColor(startColor, 0.25f);
-            
-            triggerButton.transform.DOMoveY(triggerButton.transform.position.y + yOffset, 0.25f);
-            // onTriggered.Invoke();
-            _hasTriggered = false;
-        }
-    }
-    */
+    
     private void OnDrawGizmos()
     {
         DebugExtension.DrawBounds(collider.bounds, Color.green);

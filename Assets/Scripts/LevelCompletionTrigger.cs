@@ -12,7 +12,6 @@ public class LevelCompletionTrigger : CacheBehaviour
             nextScene.LoadSceneAsync();
         }
     }
-
     private void OnDrawGizmos()
     {
         DebugExtension.DrawBounds(collider.bounds, Color.green);

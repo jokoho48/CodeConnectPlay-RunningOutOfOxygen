@@ -94,8 +94,8 @@ MonoBehaviour:
   nextScene:
     Scene: {fileID: 102900000, guid: d1c3109bdb54ad54c8a2b2838528e640, type: 3}
     sceneEnabled: 1
-    sceneIndex: 0
-    SceneName: Level_00
+    sceneIndex: 6
+    SceneName: Level_Template
 --- !u!1 &4754240850648747266
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +345,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c11b675d666d344e8437a606fc20f6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9c11b675d666d344e8437a606fc20f6b, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c11b675d666d344e8437a606fc20f6b, type: 3}
       propertyPath: m_Name
