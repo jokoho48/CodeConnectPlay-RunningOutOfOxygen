@@ -1,11 +1,9 @@
 ﻿using DG.Tweening;
 using NaughtyAttributes;
-using Plugins;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.TextCore.LowLevel;
 
-public class Trigger : CacheBehaviour
+public class Button : Triggerable
 {
     [SerializeField] private Color activatedColor;
     // private Color startColor;
@@ -15,9 +13,10 @@ public class Trigger : CacheBehaviour
     [ReadOnly] private bool _hasTriggered;
     [ColorUsage(false, true)]public Color wireActiveColor;
 
-    public void OnTriggerEnter(Collider other)
+    public override void OnTrigger()
     {
-        if (other.CompareTag("Player") && !_hasTriggered)
+        base.OnTrigger();
+        if (!_hasTriggered)
         {
             triggerButton.material.DOColor(activatedColor, 0.25f);
             triggerButton.transform.DOMoveY(triggerButton.transform.position.y - yOffset, 0.25f);
@@ -34,12 +33,12 @@ public class Trigger : CacheBehaviour
             }
         }
     }
-    
-    private void OnDrawGizmos()
+
+    public void OnDrawGizmosSelected()
     {
-        DebugExtension.DrawBounds(collider.bounds, Color.green);
-        Bounds bounds = triggerButton.bounds;
-        bounds.center = bounds.center + new Vector3(0, -yOffset, 0);
-        DebugExtension.DrawBounds(bounds, Color.red);
+        Gizmos.color = activatedColor;
+        var bounds = triggerButton.bounds;
+        Gizmos.DrawWireCube(bounds.center - new Vector3(0,yOffset, 0), bounds.size);
+        Gizmos.color = Color.white;
     }
 }
