@@ -9,7 +9,7 @@ public class Trigger : CacheBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _triggerableObject.OnTrigger();
+            _triggerableObject.DoTrigger();
         }
     }
 
@@ -19,13 +19,9 @@ public class Trigger : CacheBehaviour
     }
 }
 
-public abstract class Triggerable : CacheBehaviour, ITriggerable
+public abstract class Triggerable : CacheBehaviour
 {
-    public virtual void OnTrigger()
+    public virtual void DoTrigger()
     {
     }
-}
-public interface ITriggerable
-{
-    void OnTrigger();
 }

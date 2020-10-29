@@ -3,7 +3,7 @@
 public class LevelCompletionTrigger : Triggerable
 {
     public SceneReference nextScene;
-    public override void OnTrigger()
+    public override void DoTrigger()
     {
         nextScene.LoadSceneAsync();
     }

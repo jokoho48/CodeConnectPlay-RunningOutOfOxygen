@@ -926,7 +926,7 @@ namespace Plugins
 
         #region Misc
 
-        public static void SaveMesh(Mesh mesh, string path, bool optimizeMesh = true, bool autoSave = true)
+        public static void SaveMesh(this Mesh mesh, string path, bool optimizeMesh = true, bool autoSave = true)
         {
 #if UNITY_EDITOR
             if (string.IsNullOrEmpty(path)) return;
@@ -947,23 +947,23 @@ namespace Plugins
             if (!Application.isPlaying && Application.isEditor)
             {
 #if UNITY_EDITOR
-                go = (GameObject) PrefabUtility.InstantiatePrefab(prefab); // Create Spawn Tile
+                go = (GameObject) PrefabUtility.InstantiatePrefab(prefab); // Create Spawn Object
                 go.transform.parent = parent;
                 go.transform.position = position;
                 go.transform.rotation = rotation;
 #else
-            go = Object.Instantiate(prefab, position, rotation, parent); // Create Spawn Tile
+            go = Object.Instantiate(prefab, position, rotation, parent); // Create Spawn Object
 #endif
             }
             else
             {
-                go = Object.Instantiate(prefab, position, rotation, parent); // Create Spawn Tile
+                go = Object.Instantiate(prefab, position, rotation, parent); // Create Spawn Object
             }
 
             return go;
         }
 
-        public static void Destory(GameObject target, float time = 0f)
+        public static void Destory(this GameObject target, float time = 0f)
         {
             if (Application.isPlaying && !Application.isEditor)
             {
@@ -978,7 +978,7 @@ namespace Plugins
             }
         }
 
-        public static void Destory(Transform target, float time = 0f)
+        public static void Destory(this Transform target, float time = 0f)
         {
             if (Application.isPlaying && !Application.isEditor)
                 Object.Destroy(target.gameObject, time);

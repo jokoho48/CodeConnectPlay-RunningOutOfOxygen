@@ -24,8 +24,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_ec784842e7f44685b9c3a8f26244ba9c: 0
     - _DissolveAmount: 1
-    - _Scale: 4.25
+    - _MaskMultiplier: 1
+    - _Scale: 2.5
     - _Speed: 0.5
     - _Strength: 30
     m_Colors:

@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepTime: 0.5
-  stepHasFinished: 1
+  stepsRunning: 0
   player: {fileID: 0}
   moveEase: 19
   rotationEase: 25
   fallEase: 0
+  scaleEase: 25
   oxygenAmount: 100
   oxygenLossPerTurn: 5
   onDeath:
@@ -74,3 +75,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cc19168486b8848b94d662c67235c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputData:
+  - keyCodes: 7700000011010000
+    moveDirection: 1
+  - keyCodes: 7300000012010000
+    moveDirection: 2
+  - keyCodes: 6100000014010000
+    moveDirection: 3
+  - keyCodes: 6400000013010000
+    moveDirection: 4

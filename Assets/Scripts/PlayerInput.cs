@@ -1,30 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class PlayerInput : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
+    public InputData[] inputData;
+    [Serializable]
+    public struct InputData
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        public KeyCode[] keyCodes;
+        public MoveDirection moveDirection;
+        public bool ProcessInput()
         {
-            GameManager.Instance.ProcessInput(MoveDirection.Left);
+            return keyCodes.Any(Input.GetKeyDown);
         }
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+    }
+    
+    // Update is called once per frame
+    private void Update()
+    {
+        foreach (var data in inputData)
         {
-            GameManager.Instance.ProcessInput(MoveDirection.Right);
+            if (!data.ProcessInput()) continue;
+            GameManager.Instance.ProcessInput(data.moveDirection);
+            return;
         }
-        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            GameManager.Instance.ProcessInput(MoveDirection.Up);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            GameManager.Instance.ProcessInput(MoveDirection.Down);
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("MainMenu");
     }
 }

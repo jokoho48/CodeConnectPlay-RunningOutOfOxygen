@@ -13,9 +13,9 @@ public class Button : Triggerable
     [ReadOnly] private bool _hasTriggered;
     [ColorUsage(false, true)]public Color wireActiveColor;
 
-    public override void OnTrigger()
+    public override void DoTrigger()
     {
-        base.OnTrigger();
+        base.DoTrigger();
         if (!_hasTriggered)
         {
             triggerButton.material.DOColor(activatedColor, 0.25f);

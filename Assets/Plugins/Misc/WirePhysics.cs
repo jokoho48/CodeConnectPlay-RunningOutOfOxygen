@@ -3,28 +3,37 @@
 using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using Plugins;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = System.Random;
 
 #endregion
 
-
-[RequireComponent(typeof(LineRenderer))]
 public class WirePhysics : MonoBehaviour
 {
     [SerializeField] private float attractionForce;
     [SerializeField] private Transform[] endPoints;
-    [NonSerialized] private LineRenderer[] _lrs;
     [SerializeField] private int sections;
     [SerializeField] private int solveIteration;
     [SerializeField] private Transform[] startPoints;
+    private readonly List<LineRenderer> _lineRenderer = new List<LineRenderer>();
+
+    [SerializeField] private GameObject lineRendererPrefab;
 
     [Button("Generate Line")]
     private void GenerateLineRendererSegments()
     {
-        if (startPoints.Length != endPoints.Length || _lrs.Length != startPoints.Length) return;
-        for (var index = 0; index < _lrs.Length; index++)
+        if (startPoints.Length != endPoints.Length) return;
+        foreach (var lr in GetComponentsInChildren<LineRenderer>())
         {
-            var lr = _lrs[index];
+            lr.gameObject.Destroy();
+        }
+        _lineRenderer.Clear();
+
+        for (var index = 0; index < startPoints.Length; index++)
+        {
+            var lr = UnityExtensions.Instantiate(lineRendererPrefab, transform.position, Quaternion.identity, transform).GetComponent<LineRenderer>();
             Vector3[] points = new Vector3[sections];
             var startPoint = startPoints[index].position;
             var endPoint = endPoints[index].position;
@@ -33,45 +42,33 @@ public class WirePhysics : MonoBehaviour
 
             lr.positionCount = sections;
             lr.SetPositions(points);
+            _lineRenderer.Add(lr);
         }
-
         UpdateSimulation();
     }
 
     [Button("Simulate")]
     private void UpdateSimulation()
     {
-        if (startPoints.Length != endPoints.Length || _lrs.Length != startPoints.Length) return;
-        for (int i = 0; i < 3; i++)
+        if (startPoints.Length != endPoints.Length) return;
+        for (int i = 0; i < 10; i++)
         {
-            SimulateSegmentPositions(.1f);
+            SimulateSegmentPositions(.01f);
         }
     }
 
-    private void FindLineRenderer()
-    {
-        var lrs = new List<LineRenderer>();
-        lrs.AddRange(GetComponentsInChildren<LineRenderer>());
-        _lrs = lrs.ToArray();
-    }
     private void Awake()
     {
-        FindLineRenderer();
-        GenerateLineRendererSegments();
-    }
-
-    private void OnValidate()
-    {
-        FindLineRenderer();
         GenerateLineRendererSegments();
     }
 
     private void SimulateSegmentPositions(float deltaTime)
     {
-        if (startPoints.Length != endPoints.Length || _lrs.Length != startPoints.Length) return;
-        for (var index = 0; index < _lrs.Length; index++)
+        
+        if (startPoints.Length != endPoints.Length) return;
+        for (var index = 0; index < _lineRenderer.Count; index++)
         {
-            var lr = _lrs[index];
+            var lr = _lineRenderer[index];
             Vector3[] points = new Vector3[lr.positionCount];
             lr.GetPositions(points);
             points[0] = startPoints[index].position;
@@ -86,7 +83,6 @@ public class WirePhysics : MonoBehaviour
                     Vector3 velocity = offsetToPrev * attractionForce + offsetToNext * attractionForce;
                     points[i] += velocity * deltaTime / solveIteration;
                 }
-
                 for (int i = 1; i < points.Length - 1; i++) points[i] += Physics.gravity * deltaTime / solveIteration;
             }
 

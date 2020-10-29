@@ -8,17 +8,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : CacheBehaviour
 {
     public static GameManager Instance;
     public float stepTime = 1;
     private readonly List<IStepComponent> _stepComponents = new List<IStepComponent>();
-    [ReadOnly] public bool stepHasFinished = true;
-    [ReadOnly] public PlayerController player;
+    [ReadOnly, NonSerialized] public bool stepHasFinished = true;
+    [ReadOnly, NonSerialized] public PlayerController player;
     public Ease moveEase;
     public Ease rotationEase;
     public Ease fallEase;
+    public Ease scaleEase;
     private MoveDirection _nextMoveDirection;
     public int oxygenAmount = 100;
     public int oxygenLossPerTurn = 5;
@@ -29,6 +31,7 @@ public class GameManager : CacheBehaviour
     public float fallDistance = 30;
     public GameObject[] fallingStopObjects;
     public RectTransform oxygenBar;
+    [NonSerialized] public Queue<UnityAction> StepFinishActions = new Queue<UnityAction>();
     [NonSerialized, ShowNonSerializedField] public bool PlayerAlive = true;
     public void Awake()
     {
@@ -94,12 +97,17 @@ public class GameManager : CacheBehaviour
     
     public void StepFinished()
     {
+        if (StepFinishActions.Count != 0)
+        {
+            StepFinishActions.Dequeue().Invoke();
+            return;
+        }
         if (!Physics.Raycast(player.transform.position, Vector3.down, out RaycastHit hit, 2f, groundLayerMask))
         {
             onDeath.Invoke();
             return;
         }
-        
+
         stepHasFinished = true;
         if (_nextMoveDirection == MoveDirection.None) return;
         DoStep(_nextMoveDirection);
