@@ -1,26 +1,27 @@
-﻿using System;
+using System;
 using System.Linq;
+using IngameDebugConsole;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class PlayerInput : MonoBehaviour
 {
-    public InputData[] inputData;
+    [ReorderableList] public InputData[] inputData;
     [Serializable]
     public struct InputData
     {
-        public KeyCode[] keyCodes;
+        [ReorderableList] public KeyCode[] keyCodes;
         public MoveDirection moveDirection;
         public bool ProcessInput()
         {
             return keyCodes.Any(Input.GetKeyDown);
         }
     }
-    
     // Update is called once per frame
     private void Update()
     {
+        if (DebugLogManager.Instance.IsLogWindowVisible) return;
         foreach (var data in inputData)
         {
             if (!data.ProcessInput()) continue;

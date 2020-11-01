@@ -30,7 +30,11 @@ MonoBehaviour:
     m_Scopes:
     - com.coffee.csharp-compiler-settings
     - com.dbrizov.naughtyattributes
+    - com.needle.compilation-visualizer
+    - com.oddworm.minieditoriterationprofiler
     - com.openupm
+    - com.tayx.graphy
+    - com.yasirkula.ingamedebugconsole
     m_IsDefault: 0
     m_Capabilities: 0
   m_UserSelectedRegistryName: 
@@ -44,7 +48,11 @@ MonoBehaviour:
       m_Scopes:
       - com.coffee.csharp-compiler-settings
       - com.dbrizov.naughtyattributes
+      - com.needle.compilation-visualizer
+      - com.oddworm.minieditoriterationprofiler
       - com.openupm
+      - com.tayx.graphy
+      - com.yasirkula.ingamedebugconsole
       m_IsDefault: 0
       m_Capabilities: 0
     m_Modified: 0
@@ -53,5 +61,9 @@ MonoBehaviour:
     m_Scopes:
     - com.coffee.csharp-compiler-settings
     - com.dbrizov.naughtyattributes
+    - com.needle.compilation-visualizer
+    - com.oddworm.minieditoriterationprofiler
     - com.openupm
+    - com.tayx.graphy
+    - com.yasirkula.ingamedebugconsole
     m_SelectedScopeIndex: 0

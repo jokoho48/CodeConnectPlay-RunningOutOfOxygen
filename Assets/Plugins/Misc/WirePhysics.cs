@@ -1,26 +1,20 @@
 ﻿#region
-
-using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using Plugins;
-using Unity.Mathematics;
 using UnityEngine;
-using Random = System.Random;
-
 #endregion
 
 public class WirePhysics : MonoBehaviour
 {
     [SerializeField] private float attractionForce;
-    [SerializeField] private Transform[] endPoints;
+    [SerializeField, ReorderableList] private Transform[] endPoints;
     [SerializeField] private int sections;
     [SerializeField] private int solveIteration;
-    [SerializeField] private Transform[] startPoints;
+    [SerializeField, ReorderableList] private Transform[] startPoints;
     private readonly List<LineRenderer> _lineRenderer = new List<LineRenderer>();
 
     [SerializeField] private GameObject lineRendererPrefab;
-
     [Button("Generate Line")]
     private void GenerateLineRendererSegments()
     {
@@ -73,7 +67,6 @@ public class WirePhysics : MonoBehaviour
             lr.GetPositions(points);
             points[0] = startPoints[index].position;
             points[points.Length - 1] = endPoints[index].position;
-
             for (int numSolveIteration = 0; numSolveIteration < solveIteration; numSolveIteration++)
             {
                 for (int i = 1; i < points.Length - 1; i++)

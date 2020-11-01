@@ -24,7 +24,7 @@ public class PlayerController : StepComponent
         Vector3 rayPosition = transform.position + (Vector3.up / 2);
         _sequence = DOTween.Sequence();
 
-        if (Physics.Raycast(rayPosition, newForward, 0.5f, GameManager.Instance.groundLayerMask))
+        if (Physics.Raycast(rayPosition, newForward, 0.5f, GameManager.Instance.groundLayerMask) && !GameManager.Instance.godMode)
         {
             _animator.SetTrigger(CantMove);
             return;
