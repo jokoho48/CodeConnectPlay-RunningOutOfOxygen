@@ -44,25 +44,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc579c1f8ee09443a9f4807777791d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepTime: 0.5
-  stepsRunning: 0
-  player: {fileID: 0}
-  moveEase: 19
-  rotationEase: 25
+  moveEase: 18
+  rotationEase: 24
   fallEase: 0
   scaleEase: 25
+  stepTime: 0.5
   oxygenAmount: 100
   oxygenLossPerTurn: 5
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  oxygenBar: {fileID: 0}
   oxygenText: {fileID: 0}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  fallDistance: 30
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   fallingStopObjects: []
-  oxygenBar: {fileID: 0}
+  fallingStopComponents: []
+  fallDistance: 30
+  godMode: 0
+  levelManager: {fileID: 11400000, guid: 2ddbb9d92e2ef2e46be68f7b93883b47, type: 2}
 --- !u!114 &4284793197880881913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,9 +79,13 @@ MonoBehaviour:
   inputData:
   - keyCodes: 7700000011010000
     moveDirection: 1
+    touchPosition: {x: 0, y: 0}
   - keyCodes: 7300000012010000
     moveDirection: 2
+    touchPosition: {x: 0, y: 0}
   - keyCodes: 6100000014010000
     moveDirection: 3
+    touchPosition: {x: 0, y: 0}
   - keyCodes: 6400000013010000
     moveDirection: 4
+    touchPosition: {x: 0, y: 0}

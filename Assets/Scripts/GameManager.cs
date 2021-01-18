@@ -34,6 +34,7 @@ public class GameManager : CacheBehaviour
     public LayerMask groundLayerMask;
     public UnityEvent onDeath = new UnityEvent();
     [ReorderableList] public GameObject[] fallingStopObjects;
+    [ReorderableList] public MonoBehaviour[] fallingStopComponents;
 
     public float fallDistance = 30;
     [NonSerialized] public Queue<UnityAction> StepFinishActions = new Queue<UnityAction>();
@@ -42,7 +43,7 @@ public class GameManager : CacheBehaviour
     public bool PlayerAlive = true;
 
     public bool godMode;
-
+    [SerializeField] private LevelManager levelManager;
     public void Awake()
     {
         Instance = this;
@@ -132,7 +133,7 @@ public class GameManager : CacheBehaviour
     [ConsoleMethod("reload", "Reloads the Level")]
     public static void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelManager.Instance.ReloadLevel();
     }
 
     public void OnDrawGizmos()

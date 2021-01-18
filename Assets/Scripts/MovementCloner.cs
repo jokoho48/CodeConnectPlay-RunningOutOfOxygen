@@ -1,6 +1,8 @@
-﻿using NaughtyAttributes;
+﻿using System;
+using NaughtyAttributes;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class MovementCloner : MonoBehaviour
 {
     public Transform transformToCopy;
@@ -10,8 +12,15 @@ public class MovementCloner : MonoBehaviour
     [ShowIf("copyScale")] public Vector3 scaleOffset;
     public bool copyRotation;
     [ShowIf("copyRotation")] public Vector3 rotationOffset;
+    
     private void LateUpdate()
     {
+        UpdatePosition();
+    }
+
+    private void UpdatePosition()
+    {
+        if (!transformToCopy) return;
         if (copyPosition)
             transform.position = transformToCopy.position + positionOffset;
         if (copyScale)

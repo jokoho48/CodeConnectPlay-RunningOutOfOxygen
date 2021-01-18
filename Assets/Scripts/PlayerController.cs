@@ -48,6 +48,11 @@ public class PlayerController : StepComponent
         {
             o.SetActive(false);
         }
+
+        foreach (MonoBehaviour c in GameManager.Instance.fallingStopComponents)
+        {
+            c.enabled = false;
+        }
     }
     public void DoSuffocate()
     {
