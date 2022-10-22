@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &6586935701809444903
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316323554277636891}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5fad61a0a9a7292499b8acc58902b5e1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4871595652680250858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316323554277636891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577c35790e865254e9fe55b3ecf8bb50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6586935702240787994}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: StartFalling
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6586935702240787992
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,29 +216,29 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.22318397
       objectReference: {fileID: 0}
-    - target: {fileID: -4819223349682164798, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3949436395788077964, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3924740746642414787, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -3670109843512462444, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.473184
       objectReference: {fileID: 0}
-    - target: {fileID: -2652130149045022449, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
+    - target: {fileID: -421946445909749294, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999441
       objectReference: {fileID: 0}
-    - target: {fileID: -2511240423080479738, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
+    - target: {fileID: -421946445909749294, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.010580056
+      objectReference: {fileID: 0}
+    - target: {fileID: -421946445909749294, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1.364242e-12
+      objectReference: {fileID: 0}
+    - target: {fileID: -421946445909749294, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000012612637
+      objectReference: {fileID: 0}
+    - target: {fileID: -421946445909749294, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.212
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
       propertyPath: m_Name
@@ -326,10 +280,6 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7668100837431030959, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8449996119470504636, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
       propertyPath: m_CastShadows
       value: 2
@@ -350,3 +300,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 680d1b608a913f44f9de3eeabe662e0b, type: 3}
   m_PrefabInstance: {fileID: 6586935702455027274}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &6586935701809444903
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316323554277636891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fad61a0a9a7292499b8acc58902b5e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4871595652680250858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316323554277636891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577c35790e865254e9fe55b3ecf8bb50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6586935702240787994}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: StartFalling
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
