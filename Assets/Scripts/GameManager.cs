@@ -8,8 +8,6 @@ using Plugins;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class GameManager : CacheBehaviour
 {
@@ -44,8 +42,13 @@ public class GameManager : CacheBehaviour
 
     public bool godMode;
     [SerializeField] private LevelManager levelManager;
+    
+    [SerializeField] private bool autoStartDemoMode = false;
     public void Awake()
     {
+#if UNITY_EDITOR
+        PlayerPrefs.SetInt("Demo", autoStartDemoMode ? 1 : 0);
+#endif
         Instance = this;
         onDeath.AddListener(() =>
         {

@@ -1,5 +1,4 @@
-﻿using NaughtyAttributes;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using RoboRyanTron.SceneReference;
 
@@ -31,6 +30,12 @@ public class LevelManager : ScriptableObject
         {
             if (levels[i].SceneName == SceneManager.GetActiveScene().name)
             {
+                // if demo and last level start first level again
+                if (i == levels.Length - 1 && PlayerPrefs.GetInt("Demo") == 1)
+                {
+                    levels[0].LoadScene();
+                    return;
+                }
                 levels[i+1].LoadScene();
                 return;
             }

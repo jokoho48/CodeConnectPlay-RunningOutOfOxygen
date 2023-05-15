@@ -10,20 +10,11 @@ public class PlayerInput : MonoBehaviour
 {
     private Camera _mainCamera;
     [ReorderableList] public InputData[] inputData;
-    [Serializable]
-    public struct InputData
-    {
-        [ReorderableList] public KeyCode[] keyCodes;
-        public MoveDirection moveDirection;
-        public Vector2 touchPosition;
-        public bool ProcessInput()
-        {
-            return keyCodes.Any(Input.GetKeyDown);
-        }
-    }
+
 
     private void Start()
     {
+        if (PlayerPrefs.GetInt("Demo") == 1) Destroy(this);
         _mainCamera = Camera.current;
     }
 
@@ -46,7 +37,7 @@ public class PlayerInput : MonoBehaviour
             if (touch.phase != TouchPhase.Began) return;
             var dist = float.MaxValue;
             var dir = MoveDirection.None;
-            foreach (InputData data in inputData)
+            foreach (var data in inputData)
             {
                 var d = Vector3.Distance(data.touchPosition, _mainCamera.ScreenToViewportPoint(touch.position));
                 if (dist < d)
@@ -57,5 +48,17 @@ public class PlayerInput : MonoBehaviour
             }
             GameManager.Instance.ProcessInput(dir);
         }
+    }
+}
+
+[Serializable]
+public struct InputData
+{
+    [ReorderableList] public KeyCode[] keyCodes;
+    public MoveDirection moveDirection;
+    public Vector2 touchPosition;
+    public bool ProcessInput()
+    {
+        return keyCodes.Any(Input.GetKeyDown);
     }
 }
